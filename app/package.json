@@ -1,0 +1,19 @@
+{
+  "name": "flyinwithbrian",
+  "version": "1.0.0",
+  "description": "a flight instructor app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "\u0016https://github.com/mjdefrank/FlyinWithBrian.git"
+  },
+  "author": "mjdefrank",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
