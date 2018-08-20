@@ -1,0 +1,7 @@
+body {
+    background-image: url('../images/172R-5-lg.jpg');
+}
+
+#loginButton {
+    justify-content: right;
+}
