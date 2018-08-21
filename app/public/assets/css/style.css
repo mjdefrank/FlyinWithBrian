@@ -1,0 +1,17 @@
+body {
+    background-image: url('../images/burkelakefront.jpg');
+    background-repeat: repeat;
+    background-size: 100%;
+}
+
+.jumbotron {
+    opacity: .93;
+    align-content: center;
+}
+
+.form {
+    background: #e9ecef;
+    opacity: .93;
+    padding: 15px;
+    border-radius: .3rem;
+}
