@@ -15,3 +15,8 @@ body {
     padding: 15px;
     border-radius: .3rem;
 }
+
+.nav-link:hover{
+    font-weight: 600;
+    font-size: 105%;
+}

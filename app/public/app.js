@@ -1,4 +1,5 @@
-(function() {
+const firebase = require('firebase');
+$(document).ready(function() {
     // Initialize Firebase
     var config = {
         apiKey: "AIzaSyCBA0DrjWi2_vOvZiLR_xlXEZKTrQrrGAo",
@@ -9,21 +10,26 @@
         messagingSenderId: "897225986815"
     };
     firebase.initializeApp(config);
+    console.log('Connected to Google Firebase');
     
     //Set firebase auth var
     const auth = firebase.auth();
 
     //Get elements from doc
-    const userEmail = $('#user').val().trim();
-    const userPass = $('#pass').val().trim();
+    const userEmail = $('#user').val();
+    const userPass = $('#pass').val();
     const loginButton = $('#loginButton');
     const signupButton = $('#signUpButton');
-    const logoutButton = $('#signupButton)');
+    // const logoutButton = $('#logoutBtn)');
 
     //Add login event
     loginButton.click(function () {
-        const email = userEmail;
-        const pass = userPass;
+        console.log(userEmail);
+        console.log(userPass);
+        console.log('Login button clicked');
+        console.log('userEmail is ' + userEmail);
+        const email = userEmail.toString().trim();
+        const pass = userPass.toString().trim();
         const auth = firebase.auth();
 
         const promise = auth.signInWithEmailAndPassword(email, pass);
@@ -32,6 +38,7 @@
 
     //Add signup event
     signupButton.click(function() {
+        console.log(`Signup button clicked`)
         //Validate e-mail here ***********************
         const email = userEmail;
         const pass = userPass;
@@ -45,13 +52,15 @@
     firebase.auth().onAuthStateChanged(firebaseUser => {
         if (firebaseUser) {
             console.log(firebaseUser);
+            $('#logoutButton').classList.remove('invisible');
         } else {
             console.log('Not logged in');
         }
     });
 
     //Add logout event
-    logoutButton.click(function() {
+    $('#logoutButton').click(function() {
+        console.log('Logout button clicked');
         firebase.auth().signOut();
     });
-})
+});
