@@ -19,11 +19,10 @@ $(document).ready(function() {
     const txtPassword = $('#txtPassword');
     const btnLogin = $('#btnLogin');
     const btnSignUp = $('#btnSignUp');
-    const btnLogout = $('#btnLogout)');
+    const btnLogout = $('#btnLogout');
 
     //Add login event
     btnLogin.click(function (e) {
-        const auth = firebase.auth();
         const email = txtEmail.val();
         const pass = txtPassword.val();
         console.log('Login button clicked');
@@ -38,7 +37,6 @@ $(document).ready(function() {
         //Validate e-mail here ***********************
         const email = txtEmail.val();
         const pass = txtPassword.val();
-        const auth = firebase.auth();
         const promise = auth.createUserWithEmailAndPassword(email, pass);
         promise.then(user => console.log(user))
         promise.catch(e => console.log(e.message));
@@ -54,10 +52,10 @@ $(document).ready(function() {
     firebase.auth().onAuthStateChanged(firebaseUser => {
         if (firebaseUser) {
             console.log(firebaseUser);
-            $('#btnLogout').classList.remove('invisible');
+            $('#btnLogout').removeClass('invisible');
         } else {
             console.log('Not logged in');
-            $('#btnLogout').classList.add('invisible');
+            $('#btnLogout').addClass('invisible');
         }
     });
 
