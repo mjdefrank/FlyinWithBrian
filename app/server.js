@@ -4,6 +4,7 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, function() {
     console.log('App listening on ' + PORT);
 });
+const path = require('path');
 // Set middleware
 const bodyParser = require('body-parser');
 app.use(express.static(__dirname + '/public'));

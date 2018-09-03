@@ -1,4 +1,3 @@
-const firebase = require('firebase');
 $(document).ready(function() {
     // Initialize Firebase
     var config = {
@@ -16,51 +15,50 @@ $(document).ready(function() {
     const auth = firebase.auth();
 
     //Get elements from doc
-    const userEmail = $('#user').val();
-    const userPass = $('#pass').val();
-    const loginButton = $('#loginButton');
-    const signupButton = $('#signUpButton');
-    // const logoutButton = $('#logoutBtn)');
+    const txtEmail = $('#txtEmail');
+    const txtPassword = $('#txtPassword');
+    const btnLogin = $('#btnLogin');
+    const btnSignUp = $('#btnSignUp');
+    const btnLogout = $('#btnLogout)');
 
     //Add login event
-    loginButton.click(function () {
-        console.log(userEmail);
-        console.log(userPass);
-        console.log('Login button clicked');
-        console.log('userEmail is ' + userEmail);
-        const email = userEmail.toString().trim();
-        const pass = userPass.toString().trim();
+    btnLogin.click(function (e) {
         const auth = firebase.auth();
-
+        const email = txtEmail.val();
+        const pass = txtPassword.val();
+        console.log('Login button clicked');
+        console.log('Attempting login with user ' + email);
         const promise = auth.signInWithEmailAndPassword(email, pass);
         promise.catch(e => console.log(e.message));
     });
 
     //Add signup event
-    signupButton.click(function() {
+    btnSignUp.click(function() {
         console.log(`Signup button clicked`)
         //Validate e-mail here ***********************
-        const email = userEmail;
-        const pass = userPass;
+        const email = txtEmail.val();
+        const pass = txtPassword.val();
         const auth = firebase.auth();
         const promise = auth.createUserWithEmailAndPassword(email, pass);
         promise.then(user => console.log(user))
         promise.catch(e => console.log(e.message));
     });
-
-    //Add a realtime listener
-    firebase.auth().onAuthStateChanged(firebaseUser => {
-        if (firebaseUser) {
-            console.log(firebaseUser);
-            $('#logoutButton').classList.remove('invisible');
-        } else {
-            console.log('Not logged in');
-        }
-    });
-
+    
     //Add logout event
-    $('#logoutButton').click(function() {
+    btnLogout.click(function(e) {
         console.log('Logout button clicked');
         firebase.auth().signOut();
     });
+
+    // Add a realtime listener
+    firebase.auth().onAuthStateChanged(firebaseUser => {
+        if (firebaseUser) {
+            console.log(firebaseUser);
+            $('#btnLogout').classList.remove('invisible');
+        } else {
+            console.log('Not logged in');
+            $('#btnLogout').classList.add('invisible');
+        }
+    });
+
 });
