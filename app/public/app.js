@@ -30,9 +30,11 @@ $(document).ready(function() {
             console.log('Logged in as ' + userEmail);
             $('#btnLogout').removeClass('invisible');
             $('#loginForm').addClass('invisible');
+            $('#myProfile').removeClass('invisible');            
             // ...
         } else {
             console.log('Not logged in');
+            $('#myProfile').addClass('invisible');            
             $('#btnLogout').addClass('invisible');
             $('#loginForm').removeClass('invisible');
         }
@@ -44,14 +46,13 @@ $(document).ready(function() {
         console.log(`Signup button clicked`);
         let email = $('#txtEmail').val();
         let pass = $('#txtPassword').val();
-        window.alert('Trying to register with e-mail: '+email+ ' and pass: '+ pass + '.');
         //TODO validate e-mail
         firebase.auth().createUserWithEmailAndPassword(email, pass).catch(function(error) {
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
             //Log the error to the console.
-            console.log(errorCode + ': ' + errorMessage);
+            window.alert(errorCode + ': ' + errorMessage);
         });
     });
 

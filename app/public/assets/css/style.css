@@ -16,7 +16,17 @@ body {
     border-radius: .3rem;
 }
 
+.navbar-nav {
+    display: flex;
+    justify-content: space-around;
+}
+
+.nav-link {
+    justify-content: right;
+}
+
 .nav-link:hover{
     font-weight: 600;
     font-size: 105%;
 }
+
