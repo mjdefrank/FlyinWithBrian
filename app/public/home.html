@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase-auth.js"></script>
+    <script src="app.js"></script>
 </head>
 
 <body>
@@ -42,7 +44,7 @@
         <p>Here my students can create a profile where I'll add each flight video along with any commentary to assist in their progress.</p>
         <br />
     </div>
-    <form class="col-md-6 offset-md-3 form">
+    <form class="col-md-6 offset-md-3 form" id="loginForm">
         <div class="form-group">
             <label for="exampleInputEmail1">E-mail address</label>
             <input type="email" id="txtEmail" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
@@ -55,9 +57,5 @@
             <button type="submit" id="btnLogin" class="btn btn-primary">Login</button>
             <button type="submit" id="btnSignUp" class="btn btn-primary">Create Account</button>
     </form>
-    
-    <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase.js"></script>
-    <script src="app.js"></script>
-
 </body>
 </html>
