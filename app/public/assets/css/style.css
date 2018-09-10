@@ -1,12 +1,17 @@
 body {
-    background-image: url('../images/burkelakefront.jpg');
+    background-image: url('../images/spiration\ dark.png');
     background-repeat: repeat;
     background-size: 100%;
 }
 
-.jumbotron {
+#headerCard {
     opacity: .93;
     align-content: center;
+}
+
+#homeCarousel {
+    max-width: 84%;
+    margin-left: 8%
 }
 
 .form {
