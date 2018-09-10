@@ -1,12 +1,11 @@
 body {
-    background-image: url('../images/spiration\ dark.png');
+    /* background-image: url('../images/spiration\ dark.png'); */
     background-repeat: repeat;
     background-size: 100%;
 }
 
 #headerCard {
     opacity: .93;
-    align-content: center;
 }
 
 #homeCarousel {
