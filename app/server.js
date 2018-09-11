@@ -13,4 +13,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 app.get('/', function(req, res, next) {
     res.sendfile('./public/home.html');
-})
+});
+app.get('/about', function(req, res, next) {
+    res.sendfile('./public/about.html');
+});
+//TODO create a profile route with user's ID in req.params

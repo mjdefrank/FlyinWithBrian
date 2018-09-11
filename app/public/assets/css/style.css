@@ -1,16 +1,24 @@
 body {
-    /* background-image: url('../images/spiration\ dark.png'); */
+    background-image: url('../images/vichy.png');
     background-repeat: repeat;
-    background-size: 100%;
 }
 
 #headerCard {
     opacity: .93;
+    z-index: 1;
 }
 
 #homeCarousel {
     max-width: 84%;
     margin-left: 8%
+}
+
+#profilePic {
+    margin: auto;
+}
+
+#aboutBrian {
+    padding: 25px 50px;
 }
 
 .form {

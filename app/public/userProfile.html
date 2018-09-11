@@ -28,7 +28,7 @@
                 <a class="nav-link" href="./about.html">About Brian</a>
             </li>
             <li class="nav-item active">
-                <a id="myProfile" class="nav-link invisible" href="./userProfile.html">My profile</a>
+                <a id="myProfile" class="nav-link invisible" href="#">My profile</a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link invisible" id="btnLogout" href="#">Logout</span></a>
@@ -36,46 +36,16 @@
         </div>
     </nav>
     <br />
-        <div class="card col-md-10 offset-md-1 text-center" id="headerCard">
-            <h1 class="display-4">Flyin' With Brian!</h1>
-            <p class="lead">Welcome to the homepage for Brian DeFrank, a Certified Flight Instructor based out of Cleveland, Ohio.</p>
-            <hr class="my-2">
-            <p>Here my students can create a profile where I'll add each flight video along with any commentary to assist in their progress.</p>
-            <br />
-        </div>
-    <br />
-
-    <!-- Bootstrap Carousel -->
-    <div id="homeCarousel" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img class="d-block w-100" src="./assets/images/clevelandSkyline.png" alt="First slide">
-          </div>
-          <div class="carousel-item">
-            <img class="d-block w-100" src="./assets/images/lakeSunset.png" alt="Second slide">
-          </div>
-          <div class="carousel-item">
-            <img class="d-block w-100" src="./assets/images/threePlanes.png" alt="Third slide">
-          </div>
-          <div class="carousel-item">
-            <img class="d-block w-100" src="./assets/images/winterLanding.png" alt="Third slide">
-          </div>  
-        </div>
-      </div>
-    <!-- End Carousel -->
-    <br />
-    <form class="col-md-6 offset-md-3 form" id="loginForm">
+    <form class="col-md-6 offset-md-3 form" id="userInfo">
         <div class="form-group">
-            <label for="exampleInputEmail1">E-mail address</label>
-            <input type="email" id="txtEmail" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            <label for="userFirst">First Name:</label>
+            <input type="text" id="firstName" class="form-control" aria-describedby="firstName" placeholder="John">
         </div>
         <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" id="txtPassword" class="form-control" placeholder="Password">
+            <label for="userLast">Last Name</label>
+            <input type="text" id="lastName" class="form-control" placeholder="Doe">
         </div>
-            <button type="submit" id="btnLogin" class="btn btn-primary">Login</button>
-            <button type="submit" id="btnSignUp" class="btn btn-primary">Create Account</button>
+            <button type="submit" id="btnLogin" class="btn btn-primary">Update Info</button>
     </form>
 </body>
 </html>
