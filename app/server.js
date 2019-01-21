@@ -9,12 +9,18 @@ const path = require('path');
 const bodyParser = require('body-parser');
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended: false}));
+app.set('view engine', 'pug');
+app.set('views', './views');
 
+//  Test Pug
+app.get('/', function (req, res) {
+    res.render('index')
+});
 
-app.get('/', function(req, res, next) {
-    res.sendfile('./public/home.html');
+app.get('/home', function(req, res, next) {
+    res.render('index');
 });
 app.get('/about', function(req, res, next) {
-    res.sendfile('./public/about.html');
+    res.render('about');
 });
 //TODO create a profile route with user's ID in req.params
