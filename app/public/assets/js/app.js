@@ -11,6 +11,9 @@ $(document).ready(function() {
     firebase.initializeApp(config);
     console.log('Connected to Google Firebase');
     
+    //  Initialize firebase database
+    const database = firebase.database();
+
     //Get elements from doc
     const btnLogin = $('#btnLogin');
     const btnSignUp = $('#btnSignUp');
@@ -32,6 +35,14 @@ $(document).ready(function() {
             $('#loginForm').addClass('invisible');
             $('#myProfile').removeClass('invisible');            
             // ...
+            database.ref('users/' + uid).set({
+                firstName: "",
+                lastName: "",
+                displayName: displayName,
+                userEmail: userEmail,
+                phoneNumber: "",
+                userVideos: []
+            });
         } else {
             console.log('Not logged in');
             $('#myProfile').addClass('invisible');            
@@ -48,10 +59,10 @@ $(document).ready(function() {
         let pass = $('#txtPassword').val();
         //TODO validate e-mail
         firebase.auth().createUserWithEmailAndPassword(email, pass).catch(function(error) {
-            // Handle Errors here.
+            //  Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
-            //Log the error to the console.
+            //  Log the error to the console.
             window.alert(errorCode + ': ' + errorMessage);
         });
     });
