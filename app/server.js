@@ -24,6 +24,6 @@ app.get('/about', function(req, res, next) {
     res.render('about');
 });
 //TODO create a profile route with user's ID in req.params
-app.get('/user/:id', function(req, res, next) {
-    res.render()
-})
+app.get('/userProfile/', function(req, res, next) {
+    res.render('userProfile');
+});

@@ -1,16 +1,32 @@
-body {
-    background-image: url('../images/vichy.png');
-    background-repeat: repeat;
+.backgroundImage {
+  background-image: url('../images/planesInHangar.jpg');
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  height: 100%; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+  position: absolute;
 }
 
 #headerCard {
     opacity: .93;
     z-index: 1;
+    position: absolute;
+    margin-top: 5%;
 }
 
 #homeCarousel {
     max-width: 84%;
-    margin-left: 8%
+    margin-left: 8%;
+    /* position: absolute; */
+}
+
+#loginForm{
+    position: absolute;
+    z-index: 1;
+    margin-top: 20%;
 }
 
 #profilePic {
@@ -41,4 +57,3 @@ body {
     font-weight: 600;
     font-size: 105%;
 }
-
