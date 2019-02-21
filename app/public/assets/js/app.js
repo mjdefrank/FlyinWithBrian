@@ -18,31 +18,25 @@ $(document).ready(function() {
     const btnLogin = $('#btnLogin');
     const btnSignUp = $('#btnSignUp');
     const btnLogout = $('#btnLogout');
+    const saveProfileButton = $('#updateProfileButton');
    
     // Add a realtime listener
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             // User is signed in.
-            var displayName = user.displayName;
+            var displayName = user.firstName;
             var userEmail = user.email;
-            var emailVerified = user.emailVerified;
-            var photoURL = user.photoURL;
-            var isAnonymous = user.isAnonymous;
+            // var emailVerified = user.emailVerified;
+            // var photoURL = user.photoURL;
+            // var isAnonymous = user.isAnonymous;
             var uid = user.uid;
-            var providerData = user.providerData;
-            console.log('Logged in as ' + userEmail);
+            //var providerData = user.providerData;
+            console.log('Logged in as ' + userEmail + ' (user ID: ' + uid + ')');
             $('#btnLogout').removeClass('invisible');
             $('#loginForm').addClass('invisible');
-            $('#myProfile').removeClass('invisible');            
-            // ...
-            database.ref('users/' + uid).set({
-                firstName: "",
-                lastName: "",
-                displayName: displayName,
-                userEmail: userEmail,
-                phoneNumber: "",
-                userVideos: []
-            });
+            $('#myProfile').removeClass('invisible');
+            console.log('Firebase user first name ' + database.ref('users/' + uid + '/userFirst').once('value'));
+            //$('#userFirst').val(firebase.database.ref('users/' + uid + '/userFirst'))           
         } else {
             console.log('Not logged in');
             $('#myProfile').addClass('invisible');            
@@ -58,12 +52,21 @@ $(document).ready(function() {
         let email = $('#txtEmail').val();
         let pass = $('#txtPassword').val();
         //TODO validate e-mail
-        firebase.auth().createUserWithEmailAndPassword(email, pass).catch(function(error) {
+        const promise = firebase.auth().createUserWithEmailAndPassword(email, pass);
+        promise.catch(function(error) {
             //  Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
             //  Log the error to the console.
             window.alert(errorCode + ': ' + errorMessage);
+        });
+        let userId = firebase.auth().currentUser.uid;
+        database.ref('users/' + userId).set({
+          firstName: "",
+          lastName: "",
+          phoneNumber: "",
+          userEmail: email,
+          myVideos: []
         });
     });
 
@@ -89,4 +92,28 @@ $(document).ready(function() {
         console.log('Logout button clicked');
         firebase.auth().signOut();
     });
+
+    // Create function to write data to db
+    const saveProfile = function(userFirst, userLast, userPhone) {
+        let userId = firebase.auth().currentUser.uid;
+        firebase.database().ref('users/' + userId).set({
+          firstName: userFirst,
+          lastName: userLast,
+          phoneNumber: userPhone
+        });
+      }
+
+
+    // Add update profile event
+    saveProfileButton.click(function() {
+        userFirstName = $('#userFirst').val();
+        userLastName = $('#userLast').val();
+        userPhoneNumber = $('#phoneNumber').val();
+        console.log('"Save Profile" button clicked');
+        console.log(userFirstName);
+        console.log(userLastName);
+        console.log(userPhoneNumber);
+        saveProfile(userFirstName, userLastName, userPhoneNumber);
+    });
+
 });

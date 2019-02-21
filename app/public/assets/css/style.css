@@ -10,6 +10,10 @@
   position: absolute;
 }
 
+h1 {
+    text-align: center;
+}
+
 #headerCard {
     opacity: .93;
     z-index: 1;
