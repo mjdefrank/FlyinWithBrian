@@ -1,8 +1,14 @@
 const express = require('express');
 const app = express();
+const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost/flyin-with-brian', { useNewUrlParser: true, useUnifiedTopology: true })
+.then(() => console.log('MongoDB Connected...'))
+.catch(err => console.log(err));
+
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, function() {
-    console.log('App listening on ' + PORT);
+app.listen(PORT, () => {
+    console.log(`App listening on port ${PORT}`);
 });
 const path = require('path');
 // Set middleware
@@ -12,7 +18,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.set('view engine', 'pug');
 app.set('views', './views');
 
-//  Test Pug
+//  Set all GET routes
 app.get('/', function (req, res) {
     res.render('index')
 });
@@ -23,7 +29,7 @@ app.get('/home', function(req, res, next) {
 app.get('/about', function(req, res, next) {
     res.render('about');
 });
-//TODO create a profile route with user's ID in req.params
-app.get('/userProfile/', function(req, res, next) {
+// TODO Create a profile route with user's ID in req.params
+app.get('/user/:userId', function(req, res, next) {
     res.render('userProfile');
 });

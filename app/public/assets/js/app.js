@@ -22,21 +22,23 @@ $(document).ready(function() {
    
     // Add a realtime listener
     firebase.auth().onAuthStateChanged(function(user) {
+        // Logged in
         if (user) {
+            var uid = firebase.auth().currentUser.uid;
+            console.log(uid);
             // User is signed in.
-            var displayName = user.firstName;
             var userEmail = user.email;
-            // var emailVerified = user.emailVerified;
-            // var photoURL = user.photoURL;
-            // var isAnonymous = user.isAnonymous;
-            var uid = user.uid;
-            //var providerData = user.providerData;
             console.log('Logged in as ' + userEmail + ' (user ID: ' + uid + ')');
             $('#btnLogout').removeClass('invisible');
             $('#loginForm').addClass('invisible');
             $('#myProfile').removeClass('invisible');
-            console.log('Firebase user first name ' + database.ref('users/' + uid + '/userFirst').once('value'));
-            //$('#userFirst').val(firebase.database.ref('users/' + uid + '/userFirst'))           
+// Populate profile info   
+            if ($('#userFirst')) {
+                let thisUser = firebase.database().ref('users/'+ uid +'/firstName'.value);
+                console.log(thisUser)
+            } else {
+                console.log('Not on a profile page')
+            }
         } else {
             console.log('Not logged in');
             $('#myProfile').addClass('invisible');            
@@ -77,9 +79,10 @@ $(document).ready(function() {
         let pass = $('#txtPassword').val();
         console.log('Login button clicked');
         console.log('Attempting login with user ' + email);
-        //
+        window.alert('You\'ve successfully logged in!')
         const promise = firebase.auth().signInWithEmailAndPassword(email, pass);
         promise.catch(function(error) {
+            window.alert('There was a problem with your login')
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
@@ -91,6 +94,7 @@ $(document).ready(function() {
     btnLogout.click(function(e) {
         console.log('Logout button clicked');
         firebase.auth().signOut();
+        window.alert('User logged out.')
     });
 
     // Create function to write data to db
@@ -103,7 +107,6 @@ $(document).ready(function() {
         });
       }
 
-
     // Add update profile event
     saveProfileButton.click(function() {
         userFirstName = $('#userFirst').val();
@@ -115,5 +118,4 @@ $(document).ready(function() {
         console.log(userPhoneNumber);
         saveProfile(userFirstName, userLastName, userPhoneNumber);
     });
-
 });
